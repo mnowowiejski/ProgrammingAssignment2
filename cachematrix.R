@@ -1,7 +1,39 @@
-## Cache function asssignment for R Programming MOOC by Mark Nowowiejski
-## functions do
+## R Programming Assignment by Mark Nowowiejski
 
-## creates and matric (m) and caches it's inversion
+
+## Create the inverse of an existing matrix and caches it 
+
+makeCacheMatrix <- function(x = matrix()) {
+  j <- NULL
+  set <- function(y) {
+    x <<- y
+    j <<- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) j <<- inverse
+  getinverse <- function() j
+  list(set = set,
+       get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+}
+
+## Inverses the matrix but first checks for an already calculated version in the cache, will return that first if it exists
+
+
+cacheSolve <- function(x, ...) {
+  j <- x$getinverse()
+  if (!is.null(j)) {
+    message("getting cached data")
+    return(j)
+  }
+  data <- x$get()
+  j <- solve(data, ...)
+  x$setinverse(j)
+  j
+}
+
+##Functions included in assignment directions
 
 makeVector <- function(x = numeric()) {
   m <- NULL
@@ -16,8 +48,6 @@ makeVector <- function(x = numeric()) {
        setmean = setmean,
        getmean = getmean)
 }
-
-## Write a short comment describing this function
 
 cachemean <- function(x, ...) {
   m <- x$getmean()
