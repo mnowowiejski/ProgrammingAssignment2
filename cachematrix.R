@@ -20,7 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Inverses the matrix but first checks for an already calculated version in the cache, will return that first if it exists
 
-
+##make a matrix in the console first that runc cacheSolve on it 
 cacheSolve <- function(x, ...) {
   j <- x$getinverse()
   if (!is.null(j)) {
